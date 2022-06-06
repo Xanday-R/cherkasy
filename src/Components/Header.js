@@ -7,7 +7,7 @@ export default class Header extends Component {
     render() {
         return (
             <>
-            <Navbar fixed="top" collapseOnSelect expand="md" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="/">
                         <img src={logo} height="30" width="30" className="d-inline-block align-top" alt="Logo"></img>
@@ -18,7 +18,7 @@ export default class Header extends Component {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="responsive-navbar-nav" style={{justifyContent: "space-between"}}>
                         <Nav>
-                            <Nav.Link href="/home">Home</Nav.Link>
+                            <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/about">About us</Nav.Link>
                             <Nav.Link href="/contacts" >Contacts</Nav.Link>
                             <Nav.Link href="/blog">Blog</Nav.Link>

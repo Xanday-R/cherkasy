@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import Header from './Components/Header';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,9 +15,8 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={[<Header />, <App />]}/>
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={[<Header />, <Home />]}/>
+        <Route path="/about" element={[<Header />, <About />]} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/blog" element={<Blog />} />
       </Routes>
