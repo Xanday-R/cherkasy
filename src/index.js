@@ -13,10 +13,11 @@ import Home from './Pages/Home.js'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Header />
     <Router>
       <Routes>
-        <Route path="/" element={[<Header />, <Home />]}/>
-        <Route path="/about" element={[<Header />, <About />]} />
+        <Route path="/" element={<Home />}/>
+        <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/blog" element={<Blog />} />
       </Routes>
