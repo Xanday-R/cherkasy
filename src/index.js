@@ -9,6 +9,7 @@ import Blog from './Pages/Blog.js'
 import About from './Pages/About.js'
 import Contacts from './Pages/Contacts.js'
 import Home from './Pages/Home.js'
+import Team from './Pages/Team';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/ourteam" element={<Team />} />
       </Routes>
     </Router>
   </React.StrictMode>

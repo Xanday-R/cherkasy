@@ -1,68 +1,47 @@
-import React, { Component } from 'react'
-import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap'
+import React, {Component, useRef, useState} from 'react';
+import {Container, Col, Row, Card, ListGroup} from "react-bootstrap";
+import PostList from "../Components/UI/input/PostList";
+import {createEvent} from "@testing-library/react";
+import PostForm from "../Components/UI/input/PostForm";
+import MySelect from "../Components/UI/select/MySelect";
 
-export default class Blog extends Component {
-  render() {
-    return (
-      <>
-      <Container className='for_blog'>
-        <Row>
-            <Col md="8">
-              <div className="d-flex align-items-center me-5">
-                    <div className="flex-shrink-0">
-                        <img width={150} height={150} className="mr-3" src="https://emgotas.files.wordpress.com/2016/11/what-is-a-team.jpg"/>
-                    </div>
-                    <div className="flex-grow-1 ms-3">
-                        <h5>Blog post</h5>
-                        <p>Lorem</p>
-                    </div>
-                </div>
+function Blog() {
+    const [posts, setPosts] = useState([
+        {id: 1, title: 'JavaScript', body: 'Description'},
+        {id: 2, title: 'JavaScript', body: 'Description'},
+        {id: 3, title: 'JavaScript', body: 'Description'}
+    ])
 
-                <div className="d-flex align-items-center me-5">
-                    <div className="flex-shrink-0">
-                        <img width={150} height={150} className="mr-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG1W_8Di42aXIbF9-8mJnaTyJGOze-VcDANg&usqp=CAU" />
-                    </div>
-                    <div className="flex-grow-1 ms-3">
-                        <h5>Blog post</h5>
-                        <p>
-                            Lorem
-                        </p>
-                    </div>
-                </div>
+    const [selectedSort, setSelectedSort] = useState()
 
-                <div className="d-flex align-items-center me-5">
-                    <div className="flex-shrink-0">
-                        <img width={150} height={150} className="mr-3" src="https://longleafbusinesspark.com/wp-content/uploads/2020/07/Work-From-Home-Business-Industry1.jpg"/>
-                    </div>
-                    <div className="flex-grow-1 ms-3">
-                        <h5>Blog post</h5>
-                        <p>
-                            Lorem
-                        </p>
-                    </div>
-                </div>
-            </Col>
-            <Col md="3">
-                <h5 className="text-center mt-5">Категорії</h5>
-                <Card>
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>Категорія 1</ListGroup.Item>
-                        <ListGroup.Item>Категорія 2</ListGroup.Item>
-                        <ListGroup.Item>Категорія 3</ListGroup.Item>
-                        <ListGroup.Item>Категорія 4</ListGroup.Item>
-                        <ListGroup.Item>Категорія 5</ListGroup.Item>
-                    </ListGroup>
-                </Card>
-                <Card className="mt-3 bg-light">
-                    <Card.Body>
-                        <Card.Title>Slide widget</Card.Title>
-                        <Card.Text>Lorem</Card.Text>
-                    </Card.Body>
-                </Card>
-            </Col>
-        </Row>
-      </Container>
-      </>  
-    )
-  }
+    const createPost = (newPost) => {
+        setPosts ([...posts, newPost])
+    }
+
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
+    }
+
+    const sortPosts = (sort) => {
+        setSelectedSort(sort)
+        setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
+    }
+
+    return (
+        <>
+        <div className="Blog">
+            <hr style={{margin: '15px 0'}}/>
+                <MySelect value={selectedSort} onChange={sort => sortPosts(sort)} defaultValue="Сортування" options={[{value: 'title', name: 'За назвою'},{value: 'body', name: 'За описом'},]}/>
+                {posts.length !== 0
+                ?
+                <PostList remove={removePost} posts={posts} title="Програмування"/>
+                :
+                <h1 style={{textAlign: 'center'}}> Пости не знайдено!</h1>
+                }
+            <PostForm create={createPost}/>
+        </div>
+        </>
+    );
 }
+
+export default Blog;
